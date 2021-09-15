@@ -1,1 +1,115 @@
-/* You can add global styles to this file, and also import other style files */
+body {
+    height: 100vh;
+    justify-content: center;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.portada {
+    height: 100vh;
+    background: center/98% no-repeat url(assets/img/portada.webp);
+    position: relative;
+}
+
+nav {
+    background-color: #1AC4F0;
+}
+
+.ml {
+    display: flex;
+    justify-content: end;
+}
+
+.br {
+    border-radius: 20px;
+}
+
+.title {
+    color: #e76f51;
+    font-size: 100px;
+}
+
+.float-text {
+    position: absolute;
+    bottom: 0px;
+    margin-left: 50px;
+}
+
+.img-responsive {
+    width: 100%;
+}
+
+.img-redondeado {
+    border-radius: 15px;
+}
+
+.cuadro-3 {
+    width: 15%;
+    float: left;
+    margin: 2%;
+}
+
+.float-contenedor {
+    position: relative;
+    border-color: #071920 solid 1px;
+}
+
+.text {
+    color: #071920;
+}
+
+.productos img {
+    width: 150px;
+    height: 150px;
+}
+
+.contenedor_registro {
+    margin-top: 40px;
+    margin-left: 30%;
+    display: flex;
+    justify-content: center;
+    justify-content: space-around;
+    border-color: black;
+    width: 500px;
+    height: 500px;
+}
+
+.button {
+    /* none hace transparente ya que toma el color del body */
+    background: #28527a;
+    color: white;
+    border: 2px solid;
+    padding: 1em 2em;
+    font-size: 1em;
+    transition: color 0.25s, transform 0.25s, box-shadow 0.25s;
+    left: 500px;
+    border-radius: 20px;
+}
+
+.button:hover {
+    border-color: white;
+    background: #e76f51;
+    color: white;
+    cursor: pointer;
+    /* para difuminar abajo del boton */
+    box-shadow: 0 0.5em 0.5em -0.8em #111111;
+    transform: translateY(-0.3em);
+    border-radius: 20px;
+}
+
+.contenedor {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 2px;
+}
+
+.img {
+    margin-top: 40px;
+    background: center/98% no-repeat url(assets/img/adopcion1.jpg);
+    width: 300px;
+    height: 250px;
+    border-radius: 20%;
+    background-size: cover;
+    transition: all 1s;
+}
