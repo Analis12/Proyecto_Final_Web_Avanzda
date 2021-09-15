@@ -26,7 +26,7 @@ export async function estaAutenticado(req: Request, res: Response, next: Functio
        return res.status(401).send({ message: 'No Autorizado' });
    }
 }
-export function estaAutorizado(opts: { hasRole: Array<'encargado' | 'cliente' | 'master'>, allowSameUser?: boolean }) {
+export function estaAutorizado(opts: { hasRole: Array<'encargado' | 'cliente'>, allowSameUser?: boolean }) {
   return (req: Request, res: Response, next: Function) => {
       const { rol, uid } = res.locals
       const { id } = req.params
