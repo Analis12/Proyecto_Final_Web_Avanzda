@@ -14,13 +14,15 @@ export class ClienteService {
   constructor(private http: HttpClient) { }
 
   guardar(c: Cliente): Observable<any> {
+    c.rol = "cliente";
     const clienteBody = JSON.stringify(c);
+    console.log(clienteBody);
     if (c.id === undefined) {
       return this.http.post<any>(this.url+'/registrar-cliente', clienteBody, environment.httpOptions);
     }
     return this.http.put<any>(this.url+'/actualizar-cliente', clienteBody, environment.httpOptions);
   }
-  consultar(id: number): Observable<Cliente> {
+  consultar(id: string): Observable<Cliente> {
     return this.http.get<Cliente>(this.url + '/' + id, environment.httpOptions)
       .pipe(retry(1));
   }

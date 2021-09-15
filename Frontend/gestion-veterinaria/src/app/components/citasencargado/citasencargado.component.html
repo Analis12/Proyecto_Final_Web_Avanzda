@@ -1,0 +1,42 @@
+<app-navbar></app-navbar>
+
+<div class="contenedor_registro">
+    <form>
+        <h1 class="text-center">Mis Citas</h1>
+        <table class="tabla">
+            <tr>
+                <th>Nombre del Cliente</th>
+                <th>Cédula</th>
+                <th>Telefono</th>
+                <th>Ciudad</th>
+                <th>Fecha de Cita</th>
+                <th>Observaciones</th>
+                <th>Hora</th>
+                <th>Nombre de La mascota</th>
+                <th>Servicio a Realizar</th>
+                <th>Tipo de Servicio</th>
+                <th>Descripción</th>
+                <th></th>
+            </tr>
+            <tr *ngFor="let item of citas">
+                <td>{{item.cliente.nombre}}</td>
+                <td>{{item.cliente.cedula}}</td>
+                <td>{{item.cliente.telefono}}</td>
+                <td>{{item.cliente.ciudad}}</td>
+                <td>{{item.fecha}}</td>
+                <td>{{item.observaciones}}</td>
+                <td>{{item.hora}}</td>
+                <td>{{item.mascota.nombre}}</td>
+                <td>{{item.servicio.nombre}}</td>
+                <td>{{item.servicio.tipo}}</td>
+                <td>{{item.servicio.descripcion}}</td>
+                <td><a class="btn btn-danger" (click)="cancelar(item)">Cancelar Cita</a></td>
+            </tr>
+            <tr *ngIf="citas.length==0">
+                <td colspan="12">No existe ninguna cita pendiente </td>
+            </tr>
+        </table>
+        <button class="button mt-3" type="button" routerLink="/encargado">Regresar</button>
+    </form>
+
+</div>

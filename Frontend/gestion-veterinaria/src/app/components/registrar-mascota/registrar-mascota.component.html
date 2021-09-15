@@ -1,0 +1,35 @@
+<app-navbar></app-navbar>
+<div class="contenedor_registro">
+    <form (ngSubmit)="guardar( f )" #f="ngForm">
+        <h1 class="text-center">{{title}}</h1>
+        <table>
+            <tr>
+                <td>Nombre de la Mascota:</td>
+                <td>
+                    <input type="text" name="nombre" required [(ngModel)]="mascota.nombre">
+                </td>
+            </tr>
+            <tr>
+                <td>Raza:</td>
+                <td>
+                    <input type="text" name="raza" required [(ngModel)]="mascota.raza">
+                </td>
+            </tr>
+            <tr>
+                <td>Edad:</td>
+                <td>
+                    <input type="numeric" name="edad" required [(ngModel)]="mascota.edad">
+                </td>
+            </tr>
+            <tr>
+                <td>Color:</td>
+                <td>
+                    <input type="text" name="color" required [(ngModel)]="mascota.color">
+                </td>
+            </tr>
+        </table>
+        <button class="button mt-3" type="button" (click)="enrutar()">Regresar</button>
+        <Button class="button mt-3" type="submit">Guardar</Button>
+    </form>
+
+</div>

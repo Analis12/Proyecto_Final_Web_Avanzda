@@ -2,12 +2,14 @@ import { Mascota } from './mascota';
 import { Cliente } from './cliente';
 import { Servicio } from './servicio';
 export class Cita{
-    id:string="";
+    id:string;
     fecha:string="";
     observaciones:string="";
-    fecha_proxima:string="";
     hora:number=0;
-    mascota:Mascota = new Mascota();
-    cliente:Cliente = new Cliente();
-    servicio:Servicioo = new Servicio();
+    mascota:Mascota;
+    mascota_id:string;
+    cliente_id:string="";
+    cliente:Cliente;
+    encargado_id:string="";
+    servicio:Servicio = new Servicio();
 }

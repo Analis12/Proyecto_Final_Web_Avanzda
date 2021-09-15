@@ -113,3 +113,21 @@ nav {
     background-size: cover;
     transition: all 1s;
 }
+
+.tabla {
+    margin: 0 auto;
+    align-items: center;
+    border-collapse: collapse;
+    border-spacing: 2px;
+    border: black 2px solid;
+}
+
+.tabla th {
+    border: rgb(12, 12, 12) 2px solid;
+    padding: 15px;
+}
+
+.tabla td {
+    border: rgb(12, 12, 12) 2px solid;
+    padding: 15px;
+}

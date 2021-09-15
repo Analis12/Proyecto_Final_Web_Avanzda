@@ -1,0 +1,67 @@
+<app-navbar></app-navbar>
+<h1 class="text-center">Actualizar Historia Clínica</h1>
+<form (ngSubmit)="guardar( f )" #f="ngForm">
+    <table align="center">
+        <tr>
+            <td>Nombre de la Mascota:</td>
+            <td>
+                <input type="text " name="nombre " required [(ngModel)]="mascota.nombre " readonly="true ">
+            </td>
+        </tr>
+        <tr>
+            <td>Raza:</td>
+            <td>
+                <input type="text " name="raza " required [(ngModel)]="mascota.raza " readonly="true ">
+            </td>
+        </tr>
+        <tr>
+            <td>Edad:</td>
+            <td>
+                <input type="numeric " name="edad " required [(ngModel)]="mascota.edad " readonly="true ">
+            </td>
+        </tr>
+        <tr>
+            <td>Color:</td>
+            <td>
+                <input type="text " name="color " required [(ngModel)]="mascota.color " readonly="true ">
+            </td>
+        </tr>
+        <tr>
+            <td>Vacunas:</td>
+            <span *ngIf="mascota.historiaclinica.vacunas.length==0">Sin Vacunas</span>
+            <div *ngIf="mascota.historiaclinica.vacunas.length>0">
+                <select>
+                <option *ngFor="let item2 of mascota.historiaclinica.vacunas" [ngValue]="item2">{{item2}}</option>
+                </select>
+            </div>
+        </tr>
+        <tr>
+            <td>Desparacitaciones: </td>
+            <span *ngIf=" mascota.historiaclinica.desparacitaciones.length==0">Sin Desparacitaciones</span>
+            <div *ngIf="mascota.historiaclinica.desparacitaciones.length>0">
+                <select>
+                <option *ngFor="let item2 of mascota.historiaclinica.desparacitaciones" [ngValue]="item2">{{item2}}</option>
+                </select>
+            </div>
+        </tr>
+        <tr>
+            <td><b>Nuevo Ingreso:</b></td>
+        </tr>
+        <tr>
+            <td>Vacuna:</td>
+            <td>
+                <input type="text " name="vacuna " required [(ngModel)]="vacuna ">
+            </td>
+        </tr>
+        <tr>
+            <td>Desparacitación: </td>
+            <td>
+                <input type="text " name="desparacitacion " [(ngModel)]="desparacitacion " required>
+            </td>
+        </tr>
+    </table>
+    <div class="mt-5 d-flex justify-content-center ">
+        <button class="button mt-3 " type="button " routerLink="/encargado/historiasclinicas/listado">Regresar</button>
+        <Button class="button mt-3 " type="submit ">Guardar</Button>
+    </div>
+</form>

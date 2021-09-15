@@ -4,12 +4,13 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
+import { Usuario } from '../models/usuario';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsuarioService {
-  url = environment.url+"usuario";
+  url = environment.url+"usuarios";
   userToken: string;
   constructor(private http: HttpClient,private router:Router) { 
     this.leerToken();
@@ -17,12 +18,14 @@ export class UsuarioService {
   
   login(usuario: Usuario): Observable<Usuario> {
     const authData = {
-      ...usuario,
+      email:usuario.email,
+      password:usuario.password,
       returnSecureToken: true
     };
+    console.log(authData);
     return this.http.post<any>(this.url+'/login-email', authData, environment.httpOptions).pipe(
       map( resp => {
-        this.guardarToken( resp.data['token'] );
+        this.guardarToken( resp.message['idToken'] );
         return resp;
         
       })
@@ -43,8 +46,7 @@ export class UsuarioService {
   logout() {
     localStorage.removeItem('token');
     localStorage.removeItem('expira');
-    this.router.navigateByUrl("/");
-    window.location.reload();
+    this.router.navigateByUrl("/login");
   }
   private guardarToken( idToken: string ) {
 
@@ -79,7 +81,7 @@ export class UsuarioService {
     var isMatch = false;
     var payLoad = JSON.parse(window.atob(localStorage.getItem('token').split('.')[1]));
     var userRole = payLoad.rol;
-    allowedRoles.forEach(element => {
+    allowedRoles.forEach((element:any) => {
       if (userRole == element) {
         isMatch = true;
         return false;
@@ -87,7 +89,7 @@ export class UsuarioService {
     });
     return isMatch;
   }
-
+  
   verificarRol(){
     let rol:string = "";
     var payLoad = JSON.parse(window.atob(localStorage.getItem("token").split('.')[1]));

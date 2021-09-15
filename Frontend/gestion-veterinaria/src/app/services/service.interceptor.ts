@@ -8,10 +8,9 @@ import {
   HttpErrorResponse
 } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import 'rxjs/add/operator/do';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
-import { tap, catchError } from 'rxjs/operators';
+import { tap} from 'rxjs/operators';
 import { UsuarioService } from './usuario.service';
 
 @Injectable()

@@ -1,0 +1,59 @@
+<app-navbar></app-navbar>
+<div class="contenedor_registro">
+    <form>
+        <h1 class="text-center">Información de {{title}}</h1>
+        <button class="btn btn-success" type="button" (click)="enrutarregistro()">Añadir Mascota</button>&nbsp;
+        <button class="btn btn-warning" type="button" (click)="actualizar()" *ngIf="mascotas.length>0">Actualizar Mascota</button>&nbsp;
+        <button class="btn btn-danger" (click)="eliminarMascota()" *ngIf="mascotas.length>0">Eliminar Mascota</button>
+        <br>
+        <h4 *ngIf="mascotas.length==0">No existe ningún registro de mascotas</h4>
+        <table *ngIf="mascotas.length>0">
+            <tr>
+                <td>Nombre de la Mascota: </td>
+                <td>
+                    <select [(ngModel)]="mascotaseleccionada" name="nombre" (ngModelChange)="onChange($event)">
+                        <option *ngFor="let item of mascotas" [ngValue]="item">{{item.nombre}}</option>
+                  </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Raza: </td>
+                <td>
+                    <input type="text" name="raza" readonly [(ngModel)]="mascotaseleccionada.raza">
+                </td>
+            </tr>
+            <tr>
+                <td>Edad: </td>
+                <td>
+                    <input type="numeric" name="edad" readonly [(ngModel)]="mascotaseleccionada.edad">
+                </td>
+            </tr>
+            <tr>
+                <td>Color:</td>
+                <td>
+                    <input type="text" name="color" readonly [(ngModel)]="mascotaseleccionada.color">
+                </td>
+            </tr>
+            <tr>
+                <td>Vacunas:</td>
+                <td>
+                    <input type="text" name="vacunas" value="Sin vacunas" readonly *ngIf="mascotaseleccionada.historiaclinica.vacunas.length==0">
+                    <select name="vacunas" *ngIf="mascotaseleccionada.historiaclinica.vacunas.length>0">
+                        <option *ngFor="let item of mascotaseleccionada.historiaclinica.vacunas" value="{{item}}">{{item}}</option>
+                  </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Desparacitaciones:</td>
+                <td>
+                    <input type="text" name="desparacitaciones" value="Sin desparacitaciones" readonly *ngIf="mascotaseleccionada.historiaclinica.desparacitaciones.length==0">
+                    <select name="desparacitaciones" *ngIf="mascotaseleccionada.historiaclinica.desparacitaciones.length>0">
+                        <option *ngFor="let item of mascotaseleccionada.historiaclinica.desparacitaciones" value="{{item}}">{{item}}</option>
+                    </select>
+                </td>
+            </tr>
+        </table>
+        <button class="button mt-3" type="button" (click)="enrutar()">Regresar</button>
+    </form>
+
+</div>

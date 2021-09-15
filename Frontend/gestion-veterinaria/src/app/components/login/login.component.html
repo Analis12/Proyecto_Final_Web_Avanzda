@@ -1,13 +1,13 @@
 <div class="portada">
     <app-navbar></app-navbar>
-    <h1 align="center" class="mt-5">PET SHOP</h1>
     <div class="contenedor_registro">
-        <form action="" method="POST">
-            <p>Cédula: <input type="text" name="cedula" required> </p>
-            <p>Password: <input type="text" name="nombres" required></p>
+        <form (ngSubmit)="login( f )" #f="ngForm">
+            <h1 align="center" class="mt-1">PET SHOP</h1>
+            <h1>Inicio de Sesión</h1>
+            <p>Correo Electrónico: <input type="email" name="email" email required class="form-control" [(ngModel)]="usuario.email"> </p>
+            <p>Contraseña: <input type="password" name="password" required class="form-control" [(ngModel)]="usuario.password"></p>
             <button class="button mt-3" type="button" routerLink="/">Regresar</button>
-            <input class="button mt-3" type="submit" name="submit" value="Iniciar">
+            <Button class="button mt-3" type="submit">Ingresar</Button>
         </form>
-
     </div>
 </div>

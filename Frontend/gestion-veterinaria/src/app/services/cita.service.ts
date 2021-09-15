@@ -20,17 +20,21 @@ export class CitaService {
     }
     return this.http.put<any>(this.url+'/actualizar-cita', citaBody, environment.httpOptions);
   }
-  consultar(id: number): Observable<Cita> {
+  consultar(id: string): Observable<Cita> {
     return this.http.get<Cita>(this.url + '/' + id, environment.httpOptions)
       .pipe(retry(1));
   }
 
-  eliminar(id:number): Observable<any> {
+  eliminar(id:string): Observable<any> {
     return this.http.delete<any>(this.url + '/eliminar-cita/' + id, environment.httpOptions);
   }
 
-  listar(): Observable<Cita[]> {
-    return this.http.get<Cita[]>(this.url+'/listar-citas', environment.httpOptions)
+  listarCliente(id:string): Observable<Cita[]> {
+    return this.http.get<Cita[]>(this.url+'/listar-citas-cliente/'+id, environment.httpOptions)
+      .pipe(retry(1));
+  }
+  listarEncargado(id:string): Observable<Cita[]> {
+    return this.http.get<Cita[]>(this.url+'/listar-citas-encargado/'+id, environment.httpOptions)
       .pipe(retry(1));
   }
 }

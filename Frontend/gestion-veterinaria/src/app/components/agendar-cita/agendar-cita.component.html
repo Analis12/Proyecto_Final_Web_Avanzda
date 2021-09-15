@@ -1,0 +1,99 @@
+<app-navbar></app-navbar>
+<h1 class="text-center">Proxima Cita</h1>
+<div class="contenedor_registro">
+    <form (ngSubmit)="guardar( f )" #f="ngForm">
+        <table>
+            <tr>
+                <td>Nombre del Cliente:</td>
+                <td>
+                    <input type="text" name="cliente_nombre" readonly [(ngModel)]="cliente.nombre">
+                </td>
+            </tr>
+            <tr>
+                <td>Cédula:</td>
+                <td>
+                    <input type="text" name="cliente_cedula" readonly [(ngModel)]="cliente.cedula">
+                </td>
+            </tr>
+            <tr>
+                <td>Teléfono:</td>
+                <td>
+                    <input type="text" name="cliente_telefono" readonly [(ngModel)]="cliente.telefono">
+                </td>
+            </tr>
+            <tr>
+                <td>Ciudad:</td>
+                <td>
+                    <input type="text" name="cliente_ciudad" readonly [(ngModel)]="cliente.ciudad">
+                </td>
+            </tr>
+            <tr>
+                <td>Fecha de cita: </td>
+                <td>
+                    <input type="date" name="fecha" required [(ngModel)]="cita.fecha">
+                </td>
+            </tr>
+            <tr>
+                <td>Observaciones: </td>
+                <td>
+                    <textarea type="text" name="observaciones" required [(ngModel)]="cita.observaciones"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td>Hora:</td>
+                <td>
+                    <input type="time" name="hora" required [(ngModel)]="cita.hora">
+                </td>
+            </tr>
+            <tr>
+                <td>Nombre de la Mascota: </td>
+                <td>
+                    <select [(ngModel)]="mascotaseleccionada" name="nombre" (ngModelChange)="onChange($event)">
+                        <option *ngFor="let item of mascotas" [ngValue]="item">{{item.nombre}}</option>
+                  </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Raza: </td>
+                <td>
+                    <input type="text" name="raza" readonly [(ngModel)]="mascotaseleccionada.raza">
+                </td>
+            </tr>
+            <tr>
+                <td>Edad: </td>
+                <td>
+                    <input type="numeric" name="edad" readonly [(ngModel)]="mascotaseleccionada.edad">
+                </td>
+            </tr>
+            <tr>
+                <td>Color:</td>
+                <td>
+                    <input type="text" name="color" readonly [(ngModel)]="mascotaseleccionada.color">
+                </td>
+            </tr>
+            <tr>
+                <td>Servicio a Realizar:</td>
+                <td>
+                    <input type="text" name="servicio_tipo" required [(ngModel)]="cita.servicio.nombre">
+                </td>
+            </tr>
+            <tr>
+                <td>Tipo de Servicio:</td>
+                <td>
+                    <select [(ngModel)]="servicioseleccionado" name="nombre" (ngModelChange)="onChangeServicio($event)">
+                        <option *ngFor="let item of servicios" [ngValue]="item">{{item.tipo}}</option>
+                  </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Descripcion del Servicio:</td>
+                <td>
+                    <textarea name="servicio_descripcion" rows="4" cols="40" [(ngModel)]="servicioseleccionado.descripcion"></textarea>
+                </td>
+            </tr>
+        </table>
+        <button class="button mt-3" type="button" routerLink="/cliente">Regresar</button>
+        <Button class="button mt-3" type="submit">Guardar</Button>
+    </form>
+
+</div>

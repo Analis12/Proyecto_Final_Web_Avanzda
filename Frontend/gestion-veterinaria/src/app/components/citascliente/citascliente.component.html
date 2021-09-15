@@ -1,0 +1,23 @@
+<app-navbar></app-navbar>
+<h1 class="text-center">Mis Citas</h1>
+<div>
+    <table class="tabla">
+        <tr>
+            <th>Fecha</th>
+            <th>Hora</th>
+            <th>Mascota</th>
+            <th>Servicio</th>
+            <th></th>
+        </tr>
+        <tr *ngFor="let item of citas">
+            <td>{{item.fecha}}</td>
+            <td>{{item.hora}}</td>
+            <td>{{item.mascota.nombre}}</td>
+            <td>{{item.servicio.tipo}}</td>
+            <td><a class="btn btn-danger" (click)="cancelar(item)">Cancelar Cita</a></td>
+        </tr>
+        <tr *ngIf="citas.length==0">
+            <td colspan="5">No existe ninguna cita </td>
+        </tr>
+    </table>
+</div>

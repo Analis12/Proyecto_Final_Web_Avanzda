@@ -1,11 +1,37 @@
-<nav class="navbar">
+<nav class="navbar" *ngIf="user.rol==undefined">
     <div class="container col-lg-12 col-xs-12 col-sm-12 justify-content-between ">
         <a routerLink="/" class="navbar-brand text-white ">Inicio</a>
-        <a href="catalogo.html" class="navbar-brand text-white">Catálogo</a>
-        <a href="noticias.html" class="navbar-brand text-white">Noticias</a>
+        <a routerLink="/catalogo/comidas" class="navbar-brand text-white">Catálogo</a>
+        <a routerLink="/noticias/adopcion" class="navbar-brand text-white">Noticias</a>
         <form class="form-inline">
             <button type="button" routerLink="/login" class="btn btn-light mr-2">Iniciar Sesión</button>
-            <button type="button" onclick="location.href='registro_usuarios.html'" class="btn btn-primary">Registrarse</button>
+            <button type="button" routerLink="/registrar" class="btn btn-primary">Registrarse</button>
+        </form>
+    </div>
+</nav>
+<nav class="navbar" *ngIf="user.rol=='cliente'">
+    <div class="container col-lg-12 col-xs-12 col-sm-12 justify-content-between ">
+        <a routerLink="/cliente" class="navbar-brand text-white ">Inicio</a>
+        <a routerLink="/catalogo/comidas" class="navbar-brand text-white">Catálogo</a>
+        <a routerLink="/cliente/noticias" class="navbar-brand text-white">Noticias</a>
+        <form class="form-inline">
+            <button type="button" routerLink="/cliente/citas/agendar" class="btn btn-primary mr-2">Generar Cita</button>
+            <button type="button" class="btn btn-light mr-2" routerLink="/cliente/mis-mascotas">Mis Mascotas</button>
+            <button type="button" class="btn btn-secondary mr-2" routerLink="/cliente/citas/mis-citas">Mis Citas</button>
+            <button type="button" (click)="logout()" class="btn btn-danger ml-5">Salir</button>
+        </form>
+    </div>
+</nav>
+<nav class="navbar" *ngIf="user.rol=='encargado'">
+    <div class="container col-lg-12 col-xs-12 col-sm-12 justify-content-between ">
+        <a routerLink="/encargado" class="navbar-brand text-white ">Inicio</a>
+        <a routerLink="/catalogo/comidas" class="navbar-brand text-white">Catálogo</a>
+        <a routerLink="/encargado/noticias" class="navbar-brand text-white">Noticias</a>
+        <form class="form-inline">
+            <button type="button" routerLink="/encargado/citas/mis-citas" class="btn btn-primary">Mis Citas</button>
+            <button type="button" routerLink="/encargado/historiasclinicas/listado" class="btn btn-light">Historias Clinicas</button>
+            <button type="button" class="btn btn-secondary" routerLink="/encargado/mis-mascotas">Nuestras Mascotas</button>
+            <button type="button" class="btn btn-danger" (click)="logout()">Salir</button>
         </form>
     </div>
 </nav>
