@@ -17,6 +17,8 @@ const UsuarioController = require("./controllers/UsuarioController");
 const CitaController = require("./controllers/CitaController");
 const ServicioController = require("./controllers/ServicioController");
 const ProductoController = require("./controllers/ProductoController");
+const ClienteController = require("./controllers/ClienteController");
+const EncargadoController = require("./controllers/EncargadoController");
  // Express
 const app = express();
 app.use(cors({origin: true, methods: ['GET','POST','DELETE','PUT']}));
@@ -26,6 +28,8 @@ app.use("/usuarios",UsuarioController);
 app.use("/citas",CitaController);
 app.use("/productos",ProductoController);
 app.use("/servicios",ServicioController);
+app.use("/clientes",ClienteController);
+app.use("/encargados",EncargadoController);
 
 app.use(bodyParser.json());
 exports.api = functions.https.onRequest(app);
