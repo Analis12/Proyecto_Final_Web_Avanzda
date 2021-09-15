@@ -57,10 +57,6 @@ export class RegistrarMascotaComponent implements OnInit {
       const payLoad = JSON.parse(window.atob(localStorage.getItem('token').split('.')[1]));
       if(this.mascota.id==undefined){
         this.mascota.duenio_id = payLoad.cedula;
-      }else{
-        if(this.rol=="cliente"){
-          this.mascota.duenio_id = payLoad.cedula;
-        }
       }
     } 
     Swal.fire({
@@ -71,11 +67,16 @@ export class RegistrarMascotaComponent implements OnInit {
       timer: 1500
     })
     Swal.showLoading();
-    
-    this.masc.guardar( this.mascota)
+    console.log(this.mascota.duenio_id);
+    this.masc.guardar(this.mascota)
       .subscribe( resp => {
         Swal.close();
-        this.router.navigateByUrl('/cliente/mis-mascotas');
+        if(this.rol=="cliente"){
+          this.router.navigateByUrl('/cliente/mis-mascotas');
+        }else{
+          this.router.navigateByUrl('/encargado/mis-mascotas');
+        }
+       
         Swal.fire({
           position: 'top-end',
           icon: 'success',
@@ -83,7 +84,6 @@ export class RegistrarMascotaComponent implements OnInit {
           showConfirmButton: false,
           timer: 1500
         });
-
       }, (err) => {
         console.log(err);
         Swal.fire({

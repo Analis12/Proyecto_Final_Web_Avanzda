@@ -66,7 +66,12 @@ export class MisMascotasComponent implements OnInit {
   }
 
   actualizar(){
-    this.router.navigateByUrl('/cliente/mascotas/modificar/'+this.mascotaseleccionada.id);
+    if(this.rol=="cliente"){
+      this.router.navigateByUrl('/cliente/mascotas/modificar/'+this.mascotaseleccionada.id);
+    }else{
+      this.router.navigateByUrl('/encargado/mascotas/modificar/'+this.mascotaseleccionada.id);
+    }
+    
   }
   eliminarMascota(){
     Swal.fire({

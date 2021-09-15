@@ -37,7 +37,10 @@ export class AgregarhistoriaclinicaComponent implements OnInit {
     if (  form.invalid ) { return; }
     if(localStorage.getItem('token')){
       const payLoad = JSON.parse(window.atob(localStorage.getItem('token').split('.')[1]));
-      this.mascota.duenio_id = payLoad.cedula;
+      if(this.mascota.id==undefined){
+        this.mascota.duenio_id = payLoad.cedula;
+      }
+      
     } 
     this.mascota.historiaclinica.vacunas.push(this.vacuna);
     this.mascota.historiaclinica.desparacitaciones.push(this.desparacitacion);
