@@ -9,7 +9,8 @@ export const environment = {
       Accept: 'application/json'
     })
   },
-  url: 'http://localhost:5000/gestion-veterinaria-72a0e/us-central1/api/',
+  //url: 'http://localhost:5000/gestion-veterinaria-72a0e/us-central1/api/',
+  url: 'https://us-central1-gestion-veterinaria-72a0e.cloudfunctions.net/api',
   production: false
 };
 
