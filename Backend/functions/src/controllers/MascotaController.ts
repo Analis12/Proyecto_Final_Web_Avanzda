@@ -7,7 +7,7 @@ const db = admin.firestore();
 const router = require("express").Router();
 // Services
 
-router.post("/registrar-mascota", estaAutenticado,estaAutorizado({ hasRole: ['encargado'] }), async (req:any, res:any) => {
+router.post("/registrar-mascota", estaAutenticado,estaAutorizado({ hasRole: ['cliente','encargado'] }), async (req:any, res:any) => {
     let mascota:Mascota = req.body as Mascota;
     const newMascotaRef = db.collection('mascotas').doc();
     mascota.id = newMascotaRef.id;
@@ -25,9 +25,9 @@ router.post("/registrar-mascota", estaAutenticado,estaAutorizado({ hasRole: ['en
    
 });
 
-router.put("/actualizar-mascota",estaAutenticado,estaAutorizado({ hasRole: ['encargado'] }),async (req:any, res:any) => {
+router.put("/actualizar-mascota",estaAutenticado,estaAutorizado({ hasRole: ['encargado','cliente'] }),async (req:any, res:any) => {
     let mascota:Mascota = req.body as Mascota;
-    const updateuserRef =db.collection('Mascotas').doc(mascota.id);
+    const updateuserRef =db.collection('mascotas').doc(mascota.id);
         updateuserRef.update(JSON.parse(JSON.stringify(mascota)))
         .then(()=> { // Mascota actualizada
             res.status(200).json({
@@ -54,6 +54,22 @@ router.get("/listar-mascotas",async (req:any, res:any) => {
         data: mascotaslist
     });
 });
+router.get("/listar-mascotas/:id",async (req:any, res:any) => {
+    const ref = db.collection("mascotas");
+    const doc = await ref.get();
+    let mascotaslist:Mascota[] =[];
+    doc.docs.map(doc=>{
+        let mascota = doc.data() as Mascota;
+        if(mascota.duenio_id == req.params.id){
+            mascotaslist.push(mascota);
+        }
+       
+    });
+    res.status(200).json({
+        success: true,
+        data: mascotaslist
+    });
+});
 
 router.get("/:id",async (req:any, res:any) => {
     const ref = db.collection("mascotas");
@@ -73,7 +89,7 @@ router.get("/:id",async (req:any, res:any) => {
     });
     
 });
-router.delete("/eliminar-mascota/:id",estaAutenticado,estaAutorizado({ hasRole: ['encargado'] }),async (req:any, res:any) => {
+router.delete("/eliminar-mascota/:id",estaAutenticado,estaAutorizado({ hasRole: ['cliente','encargado'] }),async (req:any, res:any) => {
     const ref = db.collection("mascotas").doc(req.params.id);
     ref.delete().then(response => { // Mascota eliminado
         res.status(200).json({

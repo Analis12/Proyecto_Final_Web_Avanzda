@@ -41,19 +41,38 @@ router.put("/actualizar-cita",estaAutenticado,estaAutorizado({ hasRole: ['client
             })
         });
 });
-router.get("/listar-citas",estaAutenticado,estaAutorizado({ hasRole: ['encargado','cliente'] }),async (req:any, res:any) => {
+router.get("/listar-citas-encargado/:id",estaAutenticado,estaAutorizado({ hasRole: ['encargado'] }),async (req:any, res:any) => {
     const ref = db.collection("citas");
     const doc = await ref.get();
     let citaslist:Cita[] =[];
     doc.docs.map(doc=>{
         let cita = doc.data() as Cita;
-        citaslist.push(cita);
+        if(cita.encargado_id == req.params.id){
+            citaslist.push(cita);
+        }
+        
     });
     res.status(200).json({
         success: true,
         data: citaslist
     });
 });
+router.get("/listar-citas-cliente/:id",estaAutenticado,estaAutorizado({ hasRole: ['cliente'] }),async (req:any, res:any) => {
+    const ref = db.collection("citas");
+    const doc = await ref.get();
+    let citaslist:Cita[] =[];
+    doc.docs.map(doc=>{
+        let cita = doc.data() as Cita;
+        citaslist.push(cita);
+        
+    });
+    res.status(200).json({
+        success: true,
+        data: citaslist,
+    })
+ 
+});
+
 
 router.get("/:id",estaAutenticado,estaAutorizado({ hasRole: ['encargado','cliente'] }),async (req:any, res:any) => {
     const ref = db.collection("citas");

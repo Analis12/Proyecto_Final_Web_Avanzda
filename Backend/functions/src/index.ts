@@ -15,7 +15,6 @@ admin.initializeApp({
 const MascotaController = require("./controllers/MascotaController");
 const UsuarioController = require("./controllers/UsuarioController");
 const CitaController = require("./controllers/CitaController");
-const ServicioController = require("./controllers/ServicioController");
 const ProductoController = require("./controllers/ProductoController");
 const ClienteController = require("./controllers/ClienteController");
 const EncargadoController = require("./controllers/EncargadoController");
@@ -27,7 +26,6 @@ app.use("/mascotas",MascotaController);
 app.use("/usuarios",UsuarioController);
 app.use("/citas",CitaController);
 app.use("/productos",ProductoController);
-app.use("/servicios",ServicioController);
 app.use("/clientes",ClienteController);
 app.use("/encargados",EncargadoController);
 

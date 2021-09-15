@@ -80,13 +80,14 @@ router.get("/listar-clientes",estaAutenticado,estaAutorizado({ hasRole: ['encarg
     });
 });
 
-router.get("/:id", estaAutenticado,estaAutorizado({ hasRole: ['cliente'] }),async (req:any, res:any) => {
+router.get("/:id", estaAutenticado,estaAutorizado({ hasRole: ['cliente','encargado'] }),async (req:any, res:any) => {
     const ref = db.collection("clientes");
     const doc = await ref.get();
     doc.docs.map(doc=>{
         let usuario = doc.data() as Cliente;
+        console.log(usuario);
         if(usuario.id==req.params.id){
-            res.json({
+            res.status(200).json({
                 success: true,
                 data: usuario
             });

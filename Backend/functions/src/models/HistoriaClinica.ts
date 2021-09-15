@@ -1,7 +1,6 @@
-import { Mascota } from './Mascota';
 export class HistoriaClinica{
     id:string="";
-    mascota:Mascota=new Mascota();
+    activada:boolean=false;
     vacuna:string[]=[];
     desparacitacion:string[] = [];
 }

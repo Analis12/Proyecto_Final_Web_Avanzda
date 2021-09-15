@@ -6,4 +6,5 @@ export class Mascota{
     edad:number = 0;
     color:string = "";
     historiaclinica:HistoriaClinica = new HistoriaClinica();
+    duenio_id:string="";
 }
